@@ -11,6 +11,10 @@ More technical documentation regarding Linter and the Style Guide can be found a
 Every section of this style guide is numbered for both easy reference and easy linking. You can link to any section directly by simply append a hash tag and the section number to the end of http://ue4.style
 For example, if you want to send someone to the first principle of this style guide you would append `#0.1`, resulting in http://ue4.style#0.1.
 
+## Applicability
+
+The contents of this style guide focus primarily on general project structure and uassets. For C++ coding please refer to the [Epic Coding Standard](https://docs.unrealengine.com/5.0/en-US/epic-cplusplus-coding-standardblueprint-debugging-in-unreal-engine/)
+
 ## Table of contents
 - [Important Terminology](#important-terminology)
   - [Levels/Maps](#terms-level-map)
@@ -226,8 +230,6 @@ Gamemakin LLC is not a lawyer, but please don't introduce illegal actions and be
 <a name="00"></a>
 ## 00. Globally Enforced Opinions
 
-@TODO: Make this section 1 and update this document accordingly. Or maybe we don't?
-
 <a name="00.1"></a>
 ### 00.1 Forbidden Characters
 
@@ -293,9 +295,9 @@ Depending on how your asset variants are made, you can chain together variant na
 
 | Asset Type              | Asset Name                                                 |
 | ----------------------- | ---------------------------------------------------------- |
-| Static Mesh (01)        | S_Rock_01                                                  |
-| Static Mesh (02)        | S_Rock_02                                                  |
-| Static Mesh (03)        | S_Rock_03                                                  |
+| Static Mesh (01)        | SM_Rock_01                                                 |
+| Static Mesh (02)        | SM_Rock_02                                                 |
+| Static Mesh (03)        | SM_Rock_03                                                 |
 | Material                | M_Rock                                                     |
 | Material Instance (Snow)| MI_Rock_Snow                                               |
 
@@ -308,7 +310,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 <a name="anc-common"></a>
 <a name="1.2.1"></a>
 #### 1.2.1 Most Common
-
+@TODO: Maps naming
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Level / Map             |            |            | [Should be in a folder called Maps.](#2.4) |
@@ -317,9 +319,9 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Level (Lighting)        |            | _Lighting  |                                  |
 | Level (Geometry)        |            | _Geo       |                                  |
 | Level (Gameplay)        |            | _Gameplay  |                                  |
-| Blueprint               | BP_        |            |                                  |
+| Blueprint               | BP_        |            | See [Blueprints](#anc-blueprints)|
 | Material                | M_         |            |                                  |
-| Static Mesh             | S_         |            | Many use SM_. We use S_.         |
+| Static Mesh             | SM_        |            |                                  |
 | Skeletal Mesh           | SK_        |            |                                  |
 | Texture                 | T_         | _?         | See [Textures](#anc-textures)    |
 | Particle System         | PS_        |            |                                  |
@@ -348,7 +350,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 
 <a name="anc-ai"></a>
 <a name="1.2.3"></a>
-### 1.2.3 Artificial Intelligence
+#### 1.2.3 Artificial Intelligence
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -363,7 +365,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 
 <a name="anc-bp"></a>
 <a name="1.2.4"></a>
-### 1.2.4 Blueprints
+#### 1.2.4 Blueprints
 
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
@@ -377,10 +379,24 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Tutorial Blueprint      | TBP_       |            |                                  |
 | Widget Blueprint        | WBP_       |            |                                  |
 
+<a name="anc-core-blueprints"></a>
+<a name="1.2.4.1"></a>
+##### 1.2.4.1 Core Blueprints
+Certain Blueprint classes which are part of the core game framework get their own custom Prefix. Those should always be insdie the [Core Folder](#structure-core).
+
+| Asset Type              | Prefix     | Suffix     | Notes                            |
+| ----------------------- | ---------- | ---------- | -------------------------------- |
+| GameInstance            | GI_        |            |                                  |
+| GameMode                | GM_        |            |                                  |
+| GameState               | GS_        |            | Name should match a specific GM unless they are independant |
+| PlayerState             | PS_        |            | Name should match a specific GM unless they are independant |
+| PlayerController        | PC_        |            | Name should match a specific GM unless they are independant |
+| Pawn                    | PP_        |            |                                  |
+
 <a name="anc-materials"></a>
 <a name="1.2.5"></a>
-### 1.2.5 Materials
-
+#### 1.2.5 Materials
+@TODO: PostProcess Material?
 | Asset Type                    | Prefix     | Suffix     | Notes                            |
 | ----------------------------- | ---------- | ---------- | -------------------------------- |
 | Material                      | M_         |            |                                  |
@@ -394,8 +410,8 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 
 <a name="anc-textures"></a>
 <a name="1.2.6"></a>
-### 1.2.6 Textures
-
+#### 1.2.6 Textures
+@TODO: document ThreeDee established texture standards
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Texture                 | T_         |            |                                  |
@@ -479,7 +495,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 <a name="anc-sounds"></a>
 <a name="1.2.10"></a>
 ### 1.2.10 Sounds
-
+@TODO: Sound assets
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Dialogue Voice          | DV_        |            |                                  |
@@ -507,7 +523,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 <a name="anc-effects"></a>
 <a name="1.2.12"></a>
 ### 1.2.12 Effects
-
+@TODO: PostProcess Material
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Particle System         | PS_        |            |                                  |
