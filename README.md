@@ -13,7 +13,7 @@ For example, if you want to send someone to the first principle of this style gu
 
 ## Applicability
 
-The contents of this style guide focus primarily on general project structure and uassets. For C++ coding please refer to the [Epic Coding Standard](https://docs.unrealengine.com/5.0/en-US/epic-cplusplus-coding-standardblueprint-debugging-in-unreal-engine/)
+The contents of this style guide focus primarily on general project structure and uassets. For C++ coding please refer to the [Epic Coding Standard](https://docs.unrealengine.com/5.0/en-US/epic-cplusplus-coding-standardblueprint-debugging-in-unreal-engine/).
 
 ## Table of contents
 - [Important Terminology](#important-terminology)
@@ -534,7 +534,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 <a name="2"></a>
 <a name="structure"></a>
 ## 2. Content Directory Structure
-
+@TODO: Discuss this whole section. If we decide NOT to use this structure our used structure should be defined with clear rules for subfoldering
 Equally important as asset names, the directory structure style of a project should be considered law. Asset naming conventions and content directory structure go hand in hand, and a violation of either causes unneeded chaos.
 
 There are multiple ways to lay out the content of a UE4 project. In this style, we will be using a structure that relies more on filtering and search abilities of the Content Browser for those working with assets to find assets of a specific type instead of another common structure that groups asset types with folders.
