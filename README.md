@@ -110,12 +110,13 @@ The contents of this style guide focus primarily on general project structure an
     - [3.3.4 All Public Functions Should Have A Description](#bp-graphs-funcs-description)
     - [3.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name](#bp-graphs-funcs-plugin-category)
   - [3.4 Blueprint Graphs](#bp-graphs)
-    - [3.4.1 No Spaghetti](#bp-graphs-spaghetti)
-    - [3.4.2 Align Wires Not Nodes](#bp-graphs-align-wires)
-    - [3.4.3 White Exec Lines Are Top Priority](#bp-graphs-exec-first-class)
-    - [3.4.4 Graphs Should Be Reasonably Commented](#bp-graphs-block-comments)
-    - [3.4.5 Graphs Should Handle Casting Errors Where Appropriate](#bp-graphs-cast-error-handling)
-    - [3.4.6 Graphs Should Not Have Any Dangling / Loose / Dead Nodes](#bp-graphs-dangling-nodes)
+    - [3.4.1 Electric Nodes](#bp-graphs-electric-nodes)
+    - [3.4.2 No Spaghetti](#bp-graphs-spaghetti)
+    - [3.4.3 Align Wires Not Nodes](#bp-graphs-align-wires)
+    - [3.4.4 White Exec Lines Are Top Priority](#bp-graphs-exec-first-class)
+    - [3.4.5 Graphs Should Be Reasonably Commented](#bp-graphs-block-comments)
+    - [3.4.6 Graphs Should Handle Casting Errors Where Appropriate](#bp-graphs-cast-error-handling)
+    - [3.4.7 Graphs Should Not Have Any Dangling / Loose / Dead Nodes](#bp-graphs-dangling-nodes)
 - [4. Static Meshes](#4)
   - [4.1 Static Mesh UVs](#s-uvs)
     - [4.1.1 All Meshes Must Have UVs](#s-uvs-no-missing)
@@ -130,9 +131,6 @@ The contents of this style guide focus primarily on general project structure an
   - [6.1 No Errors Or Warnings](#levels-no-errors-or-warnings)
   - [6.2 Lighting Should Be Built](#levels-lighting-should-be-built)
   - [6.3 No Player Visible Z Fighting](#levels-no-visible-z-fighting)
-  - [6.4 Marketplace Specific Rules](#levels-mp-rules)
-    - [6.4.1 Overview Level](#levels-mp-rules-overview)
-    - [6.4.2 Demo Level](#levels-mp-rules-demo)
 - [7. Textures](#textures)
   - [7.1 Dimensions Are Powers of 2](#textures-dimensions)
   - [7.2 Texture Density Should Be Uniform](#textures-density)
@@ -1224,16 +1222,24 @@ For example, `Zed Camera Interface` or `Zed Camera Interface | Image Capturing`.
 ### 3.4 Blueprint Graphs
 
 This section covers things that apply to all Blueprint graphs.
-
+  
 <a name="3.4.1"></a>
+<a name="bp-graphs-electric-nodes"></a>
+#### 3.4.1 Electric Nodes
+  
+It is heavily recommended to use the [Electric Nodes Plugin](https://www.unrealengine.com/marketplace/en-US/product/electronic-nodes). Once configured the plugin settings should be set as default so Unreal saves them to `DefaultEditorPerProjectUserSettings.ini`. This way the settings can be added to source control and will be consistent for everyone working on the project.
+  
+While Electric Nodes do a great job at making graphs cleaner and easier to read on their own they should never be treated as a replacement for the following rules.
+
+<a name="3.4.2"></a>
 <a name="bp-graphs-spaghetti"></a>
-#### 3.4.1 No Spaghetti
+#### 3.4.2 No Spaghetti
 
 Wires should have clear beginnings and ends. You should never have to mentally untangle wires to make sense of a graph. Many of the following sections are dedicated to reducing spaghetti.
 
-<a name="3.4.2"></a>
+<a name="3.4.3"></a>
 <a name="bp-graphs-align-wires"></a>
-#### 3.4.2 Align Wires Not Nodes
+#### 3.4.3 Align Wires Not Nodes
 
 Always align wires, not nodes. You can't always control the size and pin location on a node, but you can always control the location of a node and thus control the wires. Straight wires provide clear linear flow. Wiggly wires wear wits wickedly. You can straighten wires by using the Straighten Connections command with BP nodes selected. Hotkey: Q
 
@@ -1246,29 +1252,29 @@ Bad Example: The tops of the nodes are aligned creating a wiggly white exec line
 Acceptable Example: Certain nodes might not cooperate no matter how you use the alignment tools. In this situation, try to minimize the wiggle by bringing the node in closer.
 ![Acceptable](https://github.com/Allar/ue5-style-guide/blob/main/images/bp-graphs-align-wires-acceptable.png?raw=true "Acceptable")
 
-<a name="3.4.3"></a>
+<a name="3.4.4"></a>
 <a name="bp-graphs-exec-first-class"></a>
-#### 3.4.3 White Exec Lines Are Top Priority
+#### 3.4.4 White Exec Lines Are Top Priority
 
 If you ever have to decide between straightening a linear white exec line or straightening data lines of some kind, always straighten the white exec line.
 
-<a name="3.4.4"></a>
+<a name="3.4.5"></a>
 <a name="bp-graphs-block-comments"></a>
-#### 3.4.4 Graphs Should Be Reasonably Commented
+#### 3.4.5 Graphs Should Be Reasonably Commented
 
 Blocks of nodes should be wrapped in comments that describe their higher-level behavior. While every function should be well named so that each individual node is easily readable and understandable, groups of nodes contributing to a purpose should have their purpose described in a comment block. If a function does not have many blocks of nodes and its clear that the nodes are serving a direct purpose in the function's goal, then they do not need to be commented as the function name and  description should suffice.
 
-<a name="3.4.5"></a>
+<a name="3.4.6"></a>
 <a name="bp-graphs-cast-error-handling"></a>
-#### 3.4.5 Graphs Should Handle Casting Errors Where Appropriate
+#### 3.4.6 Graphs Should Handle Casting Errors Where Appropriate
 
 If a function or event assumes that a cast always succeeds, it should appropriately report a failure in logic if the cast fails. This lets others know why something that is 'supposed to work' doesn't. A function should also attempt a graceful recover after a failed cast if it's known that the reference being casted could ever fail to be casted.
 
 This does not mean every cast node should have its failure handled. In many cases, especially events regarding things like collisions, it is expected that execution flow terminates on a failed cast quietly.
 
-<a name="3.4.6"></a>
+<a name="3.4.7"></a>
 <a name="bp-graphs-dangling-nodes"></a>
-#### 3.4.6 Graphs Should Not Have Any Dangling / Loose / Dead Nodes
+#### 3.4.7 Graphs Should Not Have Any Dangling / Loose / Dead Nodes
 
 All nodes in all blueprint graphs must have a purpose. You should not leave dangling blueprint nodes around that have no purpose or are not executed.
 
@@ -1279,7 +1285,7 @@ All nodes in all blueprint graphs must have a purpose. You should not leave dang
 <a name="Static Meshes"></a>
 <a name="s"></a>
 ## 4. Static Meshes
-
+@TODO: artist guidelines in this section
 This section will focus on Static Mesh assets and their internals.
 
 <a name="4.1"></a>
@@ -1352,7 +1358,7 @@ As mentioned in [00.1 Forbidden Identifiers](#00), spaces and all white space ch
 <a name="Levels"></a>
 <a name="levels"></a>
 ## 6. Levels / Maps
-
+@TODO: level artist specific rules
 [See Terminology Note](#terms-level-map) regarding "levels" vs "maps".
 
 This section will focus on Level assets and their internals.
@@ -1379,39 +1385,13 @@ It is normal during development for levels to occasionally not have lighting bui
 
 Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player.
 
-<a name="6.4"></a>
-<a name="levels-mp-rules"></a>
-### 6.4 Marketplace Specific Rules
-
-If a project is to be sold on the UE4 Marketplace, it must follow these rules.
-
-<a name="6.4.1"></a>
-<a name="levels-mp-rules-overview"></a>
-#### 6.4.1 Overview Level
-
-If your project contains assets that should be visualized or demoed, you must have a map within your project that contains the name "Overview".
-
-This overview map, if it is visualizing assets, should be set up according to [Epic's guidelines](http://help.epicgames.com/customer/en/portal/articles/2592186-marketplace-submission-guidelines-preparing-your-assets#Required%20Levels%20and%20Maps).
-
-For example, `InteractionComponent_Overview`.
-
-<a name="6.4.2"></a>
-<a name="levels-mp-rules-demo"></a>
-#### 6.4.2 Demo Level
-
-If your project contains assets that should be demoed or come with some sort of tutorial, you must have a map within your project that contains the name "Demo". This level should also contain documentation within it in some form that illustrates how to use your project. See Epic's Content Examples project for good examples on how to do this.
-
-If your project is a gameplay mechanic or other form of system as opposed to an art pack, this can be the same as your "Overview" map.
-
-For example, `InteractionComponent_Overview_Demo`, `ExplosionKit_Demo`.
-
 **[⬆ Back to Top](#table-of-contents)**
 
 
 <a name="7"></a>
 <a name="textures"></a>
 ## 7. Textures
-
+@TODO: artist guidelines
 This section will focus on Texture assets and their internals.
 
 <a name="7.1"></a>
@@ -1459,8 +1439,3 @@ Copyright (c) 2016 Gamemakin LLC
 See [LICENSE](/LICENSE)
 
 **[⬆ Back to Top](#table-of-contents)**
-
-
-## Amendments
-
-We encourage you to fork this guide and change the rules to fit your team's style guide. Below, you may list some amendments to the style guide. This allows you to periodically update your style guide without having to deal with merge conflicts.
