@@ -13,7 +13,7 @@ For example, if you want to send someone to the first principle of this style gu
 
 ## Applicability
 
-The contents of this style guide focus primarily on general project structure and uassets. For C++ coding please refer to the [Epic Coding Standard](https://docs.unrealengine.com/5.0/en-US/epic-cplusplus-coding-standardblueprint-debugging-in-unreal-engine/).
+The contents of this style guide focus primarily on general project structure and uassets. See the [Blueprints](#bp) section for more context. For C++ coding please refer to [Epic's Coding Standard](https://docs.unrealengine.com/5.0/en-US/epic-cplusplus-coding-standardblueprint-debugging-in-unreal-engine/).
 
 ## Table of contents
 - [Important Terminology](#important-terminology)
@@ -858,6 +858,8 @@ Example: When defining a weapon, do **not** use `bReloading` and `bEquipping` if
 
 Example: Do **not** use `bRunning` if you also need `bWalking` or `bSprinting`. This should be defined as an enumeration with clearly defined state names.
 
+If there are multiple states that can occur concurrently they should be implemented as Flags using a [BitMask Enum](https://unrealcommunity.wiki/bitmask-bitflag-enums-kdq2na6w). Consider defining the Enum in C++ (either the parent class or in a dedicated typedef BlueprintFunctionLibrary) with Blueprint exposed comparison functions as handling bitmasks purely in Blueprint can be tricky sometimes.
+
 <a name="3.2.1.5"></a>
 <a name="bp-vars-naming-context"></a>
 ##### 3.2.1.5 Considered Context
@@ -1005,6 +1007,12 @@ Treat `Editable` variables as public variables. Treat non-editable variables as 
 
 Unless it is known that a variable should only be accessed within the class it is defined and never a child class, do not mark variables as private. Until variables are able to be marked `protected`, reserve private for when you absolutely know you want to restrict child class usage.
 
+<a name="3.2.4.2"></a>
+<a name="bp-vars-access-components"></a>
+##### 3.2.4.2 Components
+
+Every Actor automatically has each of his Components referenced as a variable. Those variables can not be marked private or Editable and thus should always be treated as protected. This means you should never access an Actor's Component from outside its class!
+
 <a name="3.2.5"></a>
 <a name="bp-vars-advanced"></a>
 #### 3.2.5 Advanced Display
@@ -1046,6 +1054,12 @@ The naming of functions, events, and event dispatchers is critically important. 
 * What is its purpose?
 
 These questions and more can all be answered when functions are named appropriately.
+
+<a name="3.3.1.0"></a>
+<a name="bp-funcs-naming-case"></a>
+#### 3.3.1.0 Always use PascalCase
+
+As with folder and variable names you should always use [PascalCase](#terms-cases) when naming functions. In particular this means there should never be an underscore in a function name as this can lead to issues when searching for references to this function.
 
 <a name="3.3.1.1"></a>
 <a name="bp-funcs-naming-verbs"></a>
