@@ -1061,7 +1061,7 @@ These questions and more can all be answered when functions are named appropriat
 <a name="bp-funcs-naming-case"></a>
 #### 3.3.1.0 Always use PascalCase
 
-As with folder and variable names you should always use [PascalCase](#terms-cases) when naming functions. In particular this means there should never be an underscore in a function name as this can lead to issues when searching for references to this function.
+As with folder and variable names you should always use [PascalCase](#terms-cases) when naming functions. In particular this means there should never be an underscore in a function name as this can lead to issues when searching for references to this function. The only exception to this rule are functions that are used as a RepNotify, those should be prefixed with "OnRep_" (BP-only RepNotifies ar automatically named this way).
 
 <a name="3.3.1.1"></a>
 <a name="bp-funcs-naming-verbs"></a>
