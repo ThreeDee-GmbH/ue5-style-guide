@@ -47,7 +47,7 @@ The contents of this style guide focus primarily on general project structure an
   - [1.2.7 Miscellaneous](#anc-misc)
   - [1.2.8 Paper 2D](#anc-paper2d)
   - [1.2.9 Physics](#anc-physics)
-  - [1.2.10 Sounds](#anc-sounds)
+  - [1.2.10 f](#anc-sounds)
   - [1.2.11 User Interface](#anc-ui)
   - [1.2.12 Effects](#anc-effects)
 - [2. Content Directory Structure](#structure)
@@ -376,8 +376,8 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 | Blueprint Function Library | BPFL_   |            |                                  |
 | Blueprint Interface     | BPI_       |            |                                  |
 | Blueprint Macro Library | BPML_      |            | Do not use macro libraries if possible. |
-| Enumeration             | E          |            | No underscore.                   |
-| Structure               | F or S     |            | No underscore.                   |
+| Enumeration             | E_         |            | Underscore is used as distinction between C++ and BP enums |
+| Structure               | F_         |            | Underscore is used as distinction between C++ and BP structs |
 | Tutorial Blueprint      | TBP_       |            |                                  |
 | Widget Blueprint        | WBP_       |            |                                  |
 
@@ -497,7 +497,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 <a name="anc-sounds"></a>
 <a name="1.2.10"></a>
 #### 1.2.10 Sounds
-@TODO: Sound assets
+
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Dialogue Voice          | DV_        |            |                                  |
