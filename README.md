@@ -47,7 +47,7 @@ The contents of this style guide focus primarily on general project structure an
   - [1.2.7 Miscellaneous](#anc-misc)
   - [1.2.8 Paper 2D](#anc-paper2d)
   - [1.2.9 Physics](#anc-physics)
-  - [1.2.10 f](#anc-sounds)
+  - [1.2.10 Sounds](#anc-sounds)
   - [1.2.11 User Interface](#anc-ui)
   - [1.2.12 Effects](#anc-effects)
 - [2. Content Directory Structure](#structure)
