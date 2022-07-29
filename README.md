@@ -62,7 +62,7 @@ The contents of this style guide focus primarily on general project structure an
       - [2.2.2e1 Master Material Example](#2.2.2e1)
     - [2.2.3 Samples, Templates, and Marketplace Content Are Risk-Free](#2.2.3)
     - [2.2.4 DLC, Sub-Projects, and Patches Are Easily Maintained](#2.2.4)
-  - [2.3 Use Developers Folder For Local Testing](#structure-developers)
+  - [2.3 Only Use Developers Folder For Strictly Local Files](#structure-developers)
   - [2.4 All Map<sup>*</sup> Files Belong In A Folder Called Maps](#structure-maps)
   - [2.5 Use A `Core` Folder For Critical Blueprints And Other Assets](#structure-core)
   - [2.6 Do Not Create Folders Called `Assets` or `AssetTypes`](#structure-assettypes)
@@ -536,7 +536,7 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 <a name="2"></a>
 <a name="structure"></a>
 ## 2. Content Directory Structure
-@TODO: Discuss this whole section. If we decide NOT to use this structure our used structure should be defined with clear rules for subfoldering
+
 Equally important as asset names, the directory structure style of a project should be considered law. Asset naming conventions and content directory structure go hand in hand, and a violation of either causes unneeded chaos.
 
 There are multiple ways to lay out the content of a UE4 project. In this style, we will be using a structure that relies more on filtering and search abilities of the Content Browser for those working with assets to find assets of a specific type instead of another common structure that groups asset types with folders.
@@ -545,6 +545,7 @@ There are multiple ways to lay out the content of a UE4 project. In this style, 
 
 <a name="2e1"><a>
 ### 2e1 Example Project Content Structure
+
 <pre>
 |-- Content
     |-- <a href="#2.2">GenericShooter</a>
@@ -641,7 +642,7 @@ There are multiple reasons for this approach.
 
 Often in code style guides it is written that you should not pollute the global namespace and this follows the same principle. When assets are allowed to exist outside of a project folder, it often becomes much harder to enforce a strict structure layout as assets not in a folder encourages the bad behavior of not having to organize assets.
 
-Every asset should have a purpose, otherwise it does not belong in a project. If an asset is an experimental test and shouldn't be used by the project it should be put in a [`Developer`](#2.3) folder.
+Every asset should have a purpose, otherwise it does not belong in a project. If an asset is an experimental test and shouldn't be used by the project it should only ever exist on its respective task branch and be cleaned up before merging. @TODO: reference to source control guidelines
 
 <a name="2.2.2"></a>
 #### 2.2.2 Reduce Migration Conflicts
@@ -683,15 +684,15 @@ If your project plans to release DLC or has multiple sub-projects associated wit
 
 <a name="2.3"></a>
 <a name="structure-developers"></a>
-### 2.3 Use Developers Folder For Local Testing
+### 2.3 Only Use Developers Folder For Strictly Local Files
 
-During a project's development, it is very common for team members to have a sort of 'sandbox' where they can experiment freely without risking the core project. Because this work may be ongoing, these team members may wish to put their assets on a project's source control server. Not all teams require use of Developer folders, but ones that do use them often run into a common problem with assets submitted to source control.
+@TODO: Add reference to source control guidelines where and if appropriate
 
-It is very easy for a team member to accidentally use assets that are not ready for use, which will cause issues once those assets are removed. For example, an artist may be iterating on a modular set of static meshes and still working on getting their sizing and grid snapping correct. If a world builder sees these assets in the main project folder, they might use them all over a level not knowing they could be subject to incredible change and/or removal. This causes massive amounts of re-working for everyone on the team to resolve.
+When properly using source control and task branches there should be no need to put any project related files in the Developers folder. For this reason the Developers folder should be ignored for every project and never be submitted to source control.
 
-If these modular assets were placed in a Developer folder, the world builder should never have had a reason to use them and the whole issue would never happen. The Content Browser has specific View Options that will hide Developer folders (they are hidden by default) making it impossible to accidentally use Developer assets under normal use.
+If a team member wishes to put assets under source control which are not yet ready to be integrated into the main project, he can do so safely on the respective task branch. If any such assets are needed repetitively across different feature branches, e.g. for Debugging/Testing purposes, it should be considered to properly add them to the main project in a secure way. In the meantime the assets in question can be shared between team members and branches by shelving them in source control.
 
-Once the assets are ready for use, an artist simply has to move the assets into the project specific folder and fix up redirectors. This is essentially 'promoting' the assets from experimental to production.
+The only way a Developers folder should ever be used is for files that are only required by a specific developer/computer, e.g. a developer's custom Editor Material. When deciding to put assets into the Developers folder it is essential to take extra care there are no dependencies on these assets from within the main project as such dependencies will result in errors for other team members.
 
 <a name="2.4"></a>
 <a name="structure-maps"></a>
