@@ -690,7 +690,7 @@ If your project plans to release DLC or has multiple sub-projects associated wit
 
 When properly using source control and task branches there should be no need to put any project related files in the Developers folder. For this reason the Developers folder should be ignored for every project and never be submitted to source control.
 
-If a team member wishes to put assets under source control which are not yet ready to be integrated into the main project, he can do so safely on the respective task branch. If any such assets are needed repetitively across different feature branches, e.g. for Debugging/Testing purposes, it should be considered to properly add them to the main project in a secure way. In the meantime the assets in question can be shared between team members and branches by shelving them in source control.
+If a team member wishes to put assets under source control which are not yet ready to be integrated into the main project, they can do so safely on the respective task branch. If any such assets are needed repetitively across different branches, e.g. for Debugging/Testing purposes, it should be considered to properly add them to the main project in a secure way. In the meantime the assets in question can be shared between team members and branches by shelving them in source control.
 
 The only way a Developers folder should ever be used is for files that are only required by a specific developer/computer, e.g. a developer's custom Editor Material. When deciding to put assets into the Developers folder it is essential to take extra care there are no dependencies on these assets from within the main project as such dependencies will result in errors for other team members.
 
