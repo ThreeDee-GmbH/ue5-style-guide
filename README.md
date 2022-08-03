@@ -1444,8 +1444,8 @@ To structure our day to day work and keep the project in a functioning and clean
 <pre>
 |-- Main
     |-- Dev
-	|   |-- Task001
-	|   |-- Task002
+        |-- Task001
+        |-- Task002
 </pre>
 
 <a name="5.1.1"></a>
@@ -1520,6 +1520,12 @@ Before being merged every task branch has to be reviewed with the following goal
 * The task has been satisfactorily finished
 * The result conforms to this styleguide. This primarily means running the linter plugin to check for violations
 * The result conforms to project-specific guidelines such as art style or system architecture.
+
+<a name="5.6"></a>
+<a name="scm-jira"></a>
+### 5.6 JIRA
+
+
 
 **[⬆ Back to Top](#table-of-contents)**
 
