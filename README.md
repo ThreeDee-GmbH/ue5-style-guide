@@ -1426,6 +1426,103 @@ Every texture has a Texture Group property used for LODing, and this should be s
 
 **[⬆ Back to Top](#table-of-contents)**
 
+TODO: Restructure top-level chapters so we have an "Asset Creation" chapter. Source control can then be the chapter after that
+
+
+<a name="5"></a>
+<a name="scm"></a>
+## 5. Source Control Management
+
+We are using Plastic SCM as our source control management software.
+
+<a name="5.1"></a>
+<a name="scm-branches"></a>
+### 5.1 Branches
+
+To structure our day to day work and keep the project in a functioning and clean state we use a set of predefined branches and a branch per task workflow.
+
+<pre>
+|-- Main
+    |-- Dev
+	|   |-- Task001
+	|   |-- Task002
+</pre>
+
+<a name="5.1.1"></a>
+<a name="scm-branches-main"></a>
+#### 5.1.1 Main Branch
+
+Every changeset on the main branch represents a version of the project that has been tested to be stable. Such a version is not necessarily an actual release but should always be polished to a level so it could be shown to external testers, publishers, etc.
+There are no direct checkins on the main branch, every changeset is a merge.
+
+<a name="5.1.2"></a>
+<a name="scm-branches-dev"></a>
+#### 5.1.2 Dev Branch
+
+The Dev branch is a direct child of the main branch. Assets and functionlity on this branch are tested and stable individually. This is the branch that will be tested by QA.
+There are no direct checkins on the dev branch, every changeset is a merge.
+
+<a name="5.1.3"></a>
+<a name="scm-branches-tasks"></a>
+#### 5.1.3 Task Branches
+
+Task branches are where the actual work is done and checked in. A task can be a bugfix, creating a specific asset or implementing a feature (larger features might be split into several sub-tasks).
+Depending on the project task branches can either be created maually or created directly from JIRA issues. Manually created task branches should be prefixed according to the type of work that is done, e.g. feature_, bugfix_, etc.
+
+<a name="5.2"></a>
+<a name="scm-checkouts"></a>
+### 5.2 Checkouts
+
+To prevent accidentally editing the same file on different branches and thereby creating an unresolvable merge conflict every `.uasset` and `.umap` file is configured for exclusive checkouts. For this to work properly everyone should use the scm plugin built into the engine and make sure to save/checkout every file they want to edit.
+
+> Exclusive checkouts only account for a file's current checkout state and not whether you have the latest revision across branches so some merge conflicts may still happen. For this reason everyone should make sure a map is not being worked on or changed for a different task before editing a umap file.
+
+<a name="5.3"></a>
+<a name="scm-checkins"></a>
+### 5.3 Checkins
+
+Every checkin must have a descriptive comment. The change resulting from your checkin should be comprehensible from your comment alone without having to look into the list of changed files. Also don't overload checkins. If you changed multiple things which are not related to the same goal you should consider splitting them up into separate checkins.
+Checkin comments should start with a 'category', written in CAPS and encapsulated in square [brackets]. Categories should describe the general type of work you did for this checkin, some common examples can be found in the following table:
+
+| Category        | Description                                                 |
+| --------------- | ----------------------------------------------------------- |
+| MAPS            | Changes to a level                                          |
+| AUDIO           | Changes to audio assets                                     |
+| ANIMATION       | Changes to animation assets                                 |
+| ASSETS          | general asset creation                                      |
+| MATERIALS       | Changes or addition of Materials                            |
+| UI              | Widget layouting and UI programming                         |
+| LOGIC           | Blueprint scriping                                          |
+| CODE            | C++ programming                                             |
+| PROJECT         | Changes to project settings or other configuration          |
+
+If multiple categories match the work you've done and you don't want to split up your checkin either choose the category that fits best or use multiple categories separated by commas.
+
+Team members using shared plastic credentials such as the freelancer account should add their initials in round brackets after the category. This way every changeset can be mapped to its creator.
+
+<a name="5.4"></a>
+<a name="scm-merge"></a>
+### 5.4 Merge
+
+Merging a task branch to the dev branch should always follow the same procedure:
+* The task must have been reviewed and approved by the responsible team member.
+* Merge the latest changes from dev to the task branch and resolve any pending merge conflicts.
+* Make sure the merge didn't break any functionality.
+* Merge the task branch to the dev branch
+
+The dev branch should only ever be merged to the main branch after being validated by an actual playtest.
+
+<a name="5.5"></a>
+<a name="scm-review"></a>
+### 5.5 Review Process
+
+Before being merged every task branch has to be reviewed with the following goals in mind:
+* The task has been satisfactorily finished
+* The result conforms to this styleguide. This primarily means running the linter plugin to check for violations
+* The result conforms to project-specific guidelines such as art style or system architecture.
+
+**[⬆ Back to Top](#table-of-contents)**
+
 
 ## Major Contributors
 
