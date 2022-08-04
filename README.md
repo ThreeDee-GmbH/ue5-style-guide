@@ -1442,10 +1442,10 @@ We are using Plastic SCM as our source control management software.
 To structure our day to day work and keep the project in a functioning and clean state we use a set of predefined branches and a branch per task workflow.
 
 <pre>
-|-- [Main](#scm-branches-main)
-    |-- [Dev](#scm-branches-dev)
-        |-- [Task001](#scm-branches-tasks)
-        |-- [Task002](#scm-branches-tasks)
+|-- <a href="#scm-branches-main">Main</a>
+    |-- <a href="#scm-branches-dev">Dev</a>
+        |-- <a href="#scm-branches-tasks">Task001</a>
+        |-- <a href="#scm-branches-tasks">Task002</a>
 </pre>
 
 <a name="5.1.1"></a>
