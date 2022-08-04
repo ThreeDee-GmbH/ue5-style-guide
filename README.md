@@ -1542,7 +1542,7 @@ To hide done task branches in the branches view edit your query to:
 
 <code>
 find branch where not attrvalue='Done'
-<code>
+</code>
 
 In the branch explorer, open `Filters and conditional format`.  Add an exclusion rule with the condition
 
