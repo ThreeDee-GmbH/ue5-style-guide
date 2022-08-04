@@ -1512,7 +1512,7 @@ Merging a task branch to the dev branch should always follow the same procedure:
 * Make sure the merge didn't break any functionality.
 * Merge the task branch to the dev branch
 
-The dev branch should only ever be merged to the main branch after being validated by an actual playtest.
+**The dev branch should only ever be merged to the main branch after being validated by an actual playtest.**
 
 <a name="5.5"></a>
 <a name="scm-review"></a>
@@ -1524,10 +1524,81 @@ Before being merged every task branch has to be reviewed with the following goal
 * The result conforms to project-specific guidelines such as art style or system architecture.
 
 <a name="5.6"></a>
+<a name="scm-attributes"></a>
+### 5.6 Attributes
+
+To improve readability in branch view and branch explorer we mark task branches with the `STATUS` attribute to allow filtering out branches that are considered `Done`.  To set the attribute conveniently via a UI action, edit `C:\Users\<User name>\AppData\Local\plastic4\externaltools.conf` and add the following lines:
+
+<pre>
+branch | Set branch status to 'Open' | cm | attribute set att:STATUS @object Open -path="@wkpath"
+branch | Set branch status to 'Done' | cm | attribute set att:STATUS @object Done -path="@wkpath"
+</pre>
+
+<a name="5.6.1"></a>
+<a name="scm-attributes-filtering"></a>
+#### 5.6.1 Filtering
+
+To hide done task branches in the branches view edit your query to:
+
+<code>
+find branch where not attrvalue='Done'
+<code>
+
+In the branch explorer, open `Filters and conditional format`.  Add an exclusion rule with the condition
+
+<code>
+attrvalue = 'Done'
+</code>
+
+<a name="5.7"></a>
 <a name="scm-jira"></a>
-### 5.6 JIRA
+### 5.7 JIRA
 
+This section describes how we integrate our task per branch and reviewing workflows with JIRA.
 
+> Note that the described workflows are somewhat specific for our work on `Charged!` so they might need to be adjusted for other projects.
+
+<a name="5.7.1"></a>
+<a name="scm-jira-setup"></a>
+#### 5.7.1 Setup
+
+In your Plastic SCM client go to Preferences->Issue Trackers and configure the following settings:
+
+ * Bind to this issue tracking system: `Atlassian JIRA`
+ * Apply binding to: `Repositories`
+ * check `Bind issues to Plastic branches (recommended)`
+ * Host: `https://threedee.atlassian.net/`
+ * User name: your Atlassian account email address
+ * Password: an [API token](https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/) you have to create for your Atlassian account
+ * Branch prefix: `JIRA_`
+ * Project Key: `MULTIPLE_PROJECTS`
+ * Custom Field ID: needs to be empty
+ * Issue Types: `Bug, Task` (has to match issue types in JIRA)
+
+<a name="5.7.2"></a>
+<a name="scm-jira-workflow"></a>
+#### 5.7.2 Workflow
+
+This section describes the actual steps and processes necessary for completing a specific task.
+Team members involved:
+ * `Reporter`: The team lead responsible for the task, e.g. Game Director, Technical Director, Creative Director, etc. 
+ * `Assignee`: The team member who is executing the task
+
+1. `Reporter` creates the task in JIRA
+2. The task is selected for production, i.e. added to the current/upcoming sprint (Task status = `TO DO`)
+3. `Assignee` is either directly assigned to the task by `Reporter` or chooses the task on his own
+4. `Assignee` cross-checks specific requirements or creative directions with `Reporter`
+5. `Assignee` moves task status -> `In Progress`. JIRA automatically assignes the task to `Assignee`
+6. In Plastic, `Assignee` creates a new branch from the task and switches his workspace to the new branch
+7. `Assignee` works on his task
+8. `Assignee` tests his results to ensure they are working properly. This includes merging in the latest changes from [Dev](#scm-branches-dev)
+9. `Assignee` cleans up his task branch
+10. `Assignee` moves task status -> `Pending Review`
+11. `Reporter` [reviews](#scm-review) the task
+12. If the review fails, `Reporter`moves task status -> `In Progress`
+13. `Assignee` goes back to 7. and incorporates feedback
+14. `Reporter` merges the task branch back to Dev and [marks the branch Done](#scm-attributes)
+15. `Reporter` moves task staus -> `Done`
 
 **[⬆ Back to Top](#table-of-contents)**
 
