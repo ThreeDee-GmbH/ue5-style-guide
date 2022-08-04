@@ -1,3 +1,4 @@
+
 # [ThreeDee](https://threedee.de) UE4 Style Guide()
 
 *Created on basis of the [Gamemakin UE4 Style Guide](https://github.com/Allar/ue5-style-guide)*
@@ -1563,6 +1564,7 @@ This section describes how we integrate our task per branch and reviewing workfl
 #### 5.7.1 Setup
 
 In your Plastic SCM client go to Preferences->Issue Trackers and configure the following settings:
+> If you can't find the Issue Trackers settings ty switching back to legacy GUI!
 
  * Bind to this issue tracking system: `Atlassian JIRA`
  * Apply binding to: `Repositories`
@@ -1595,9 +1597,9 @@ Team members involved:
 9. `Assignee` cleans up his task branch
 10. `Assignee` moves task status -> `Pending Review`
 11. `Reporter` [reviews](#scm-review) the task
-12. If the review fails, `Reporter`moves task status -> `In Progress`
+12. If the review is rejeced, `Reporter`moves task status -> `In Progress`
 13. `Assignee` goes back to 7. and incorporates feedback
-14. `Reporter` merges the task branch back to Dev and [marks the branch Done](#scm-attributes)
+14. If the review passes, `Reporter` merges the task branch back to Dev and [marks the branch Done](#scm-attributes)
 15. `Reporter` moves task staus -> `Done`
 
 **[⬆ Back to Top](#table-of-contents)**
