@@ -1442,10 +1442,10 @@ We are using Plastic SCM as our source control management software.
 To structure our day to day work and keep the project in a functioning and clean state we use a set of predefined branches and a branch per task workflow.
 
 <pre>
-|-- Main
-    |-- Dev
-        |-- Task001
-        |-- Task002
+|-- [Main](#scm-branches-main)
+    |-- [Dev](#scm-branches-dev)
+        |-- [Task001](#scm-branches-tasks)
+        |-- [Task002](#scm-branches-tasks)
 </pre>
 
 <a name="5.1.1"></a>
@@ -1459,15 +1459,17 @@ There are no direct checkins on the main branch, every changeset is a merge.
 <a name="scm-branches-dev"></a>
 #### 5.1.2 Dev Branch
 
-The Dev branch is a direct child of the main branch. Assets and functionlity on this branch are tested and stable individually. This is the branch that will be tested by QA.
-There are no direct checkins on the dev branch, every changeset is a merge.
+The Dev branch is a direct child of the main branch. Assets and functionality have to be tested and individually stable before being merged onto this branch. This is the branch that will be tested by QA.
+There are no direct checkins on the dev branch, every changeset is a merge. 
 
 <a name="5.1.3"></a>
 <a name="scm-branches-tasks"></a>
 #### 5.1.3 Task Branches
 
 Task branches are where the actual work is done and checked in. A task can be a bugfix, creating a specific asset or implementing a feature (larger features might be split into several sub-tasks).
-Depending on the project task branches can either be created maually or created directly from JIRA issues. Manually created task branches should be prefixed according to the type of work that is done, e.g. feature_, bugfix_, etc.
+Depending on the project task branches can either be created manually or created directly from [JIRA](#scm-jira) issues. Manually created task branches should be prefixed according to the type of work that is done, e.g. feature_, bugfix_, etc.
+
+> When your project uses JIRA or a similar issue tracking software, every task branch should be created from and linked to a tracked issue. This way all necessary informationen about the project's progress is kept in one place.
 
 <a name="5.2"></a>
 <a name="scm-checkouts"></a>
@@ -1505,7 +1507,7 @@ Team members using shared plastic credentials such as the freelancer account sho
 ### 5.4 Merge
 
 Merging a task branch to the dev branch should always follow the same procedure:
-* The task must have been reviewed and approved by the responsible team member.
+* The task must have been [reviewed](#scm-review) and approved by the responsible team member.
 * Merge the latest changes from dev to the task branch and resolve any pending merge conflicts.
 * Make sure the merge didn't break any functionality.
 * Merge the task branch to the dev branch
