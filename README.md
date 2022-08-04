@@ -1564,7 +1564,7 @@ This section describes how we integrate our task per branch and reviewing workfl
 #### 5.7.1 Setup
 
 In your Plastic SCM client go to Preferences->Issue Trackers and configure the following settings:
-> If you can't find the Issue Trackers settings ty switching back to legacy GUI!
+> If you can't find the Issue Trackers settings try switching back to legacy GUI!
 
  * Bind to this issue tracking system: `Atlassian JIRA`
  * Apply binding to: `Repositories`
