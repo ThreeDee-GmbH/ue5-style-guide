@@ -1507,6 +1507,18 @@ Team members using shared plastic credentials such as the freelancer account sho
 <a name="scm-merge"></a>
 ### 5.4 Merge
 
+When merging from one branch to another you can add a comment, similar to a checkin comment. For merges these comments should always be formatted `[MERGE] from <source branch name>`.  The destination branch does not need to be mentioned as it is explicitely clear.
+
+**Good**
+* `[MERGE] from Dev`
+* `[MERGE] from JIRA_CHA-42`
+
+**Bad**
+* `[MERGE] Dev to Task`
+* `[MERGE] updated`
+* `[MERGE] from Dev to JIRA_CHA-69`
+* `merged dev`
+
 Merging a task branch to the dev branch should always follow the same procedure:
 * The task must have been [reviewed](#scm-review) and approved by the responsible team member.
 * Merge the latest changes from dev to the task branch and resolve any pending merge conflicts.
