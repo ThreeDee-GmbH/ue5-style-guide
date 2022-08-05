@@ -1643,6 +1643,26 @@ Team members involved:
 **[⬆ Back to Top](#table-of-contents)**
 
 
+<a name="6"></a>
+<a name="misc"></a>
+## 6. Miscellaneous
+
+This section focuses on various topics related to working as a team on Unreal Engine projects.
+
+<a name="6.1"></a>
+<a name="misc-ddc"></a>
+### 6.1 Shared Derived Data Cache
+
+Many Unreal Engine Assets require additional "derived data" before they can be used, e.g. Shaders have to be compiled for the platform your Editor is running on. Derived data is large, and at times may need regenerating, therefore it is stored in the Derived Data Cache (DDC). As (re)generating takes significant amounts of time, on-site workspaces (LAN/office) should use a so-called Shared Derived Data Cache. This way, only one person needs to build the derived Asset format(s) and they will be automatically available to all other users. There will occasionally be stalls when Assets need to be processed, but the results are stored and shared. Even on a fairly small team, sharing Asset processing work in this way will eliminate most processing time.
+
+To set up Shared DDC:
+1. establish NAS connection
+2. have "Share" as network drive "T:\"
+3. add system environment variable: "UE-SharedDataCachePath" = "T:\_SharedResources\UE4DDC"
+
+**[⬆ Back to Top](#table-of-contents)**
+
+
 ## Major Contributors
 
 * [Michael Allar](http://allarsblog.com): [GitHub](https://github.com/Allar), [Twitter](https://twitter.com/michaelallar)
