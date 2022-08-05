@@ -1484,24 +1484,50 @@ To prevent accidentally editing the same file on different branches and thereby 
 <a name="scm-checkins"></a>
 ### 5.3 Checkins
 
-Every checkin must have a descriptive comment. The change resulting from your checkin should be comprehensible from your comment alone without having to look into the list of changed files. Also don't overload checkins. If you changed multiple things which are not related to the same goal you should consider splitting them up into separate checkins.
-Checkin comments should start with a 'category', written in CAPS and encapsulated in square [brackets]. Categories should describe the general type of work you did for this checkin, some common examples can be found in the following table:
+Every checkin must have a descriptive comment. The change resulting from your checkin should be comprehensible from your comment alone without having to look into the list of changed files. Some general hints for writing good comments:
+
+* Avoid using the words `adjusted` or `tweaked` as those are ambiguous. For numeric changes name the direction in which the change occured. For complex adjustments try describing the intended result
+* [TODO] need more general hints
+
+You should only change and add files that correlate with your current task and branch. Create or request a new task/branch if refactoring is needed.
+
+Also don't overload checkins. If you changed multiple things which are not related to the same goal you should consider splitting them up into separate checkins.
+
+Checkin comments should start with a 'category', written in CAPS and encapsulated in square [brackets]. Categories allow for a quick distinction. Categories should describe the general type of work you did for this checkin, some common examples can be found in the following table:
 
 | Category        | Description                                                 |
 | --------------- | ----------------------------------------------------------- |
 | MAPS            | Changes to a level                                          |
 | AUDIO           | Changes to audio assets                                     |
-| ANIMATION       | Changes to animation assets                                 |
-| ASSETS          | general asset creation                                      |
-| MATERIALS       | Changes or addition of Materials                            |
+| ART             | Changes to any art related assets                           |
 | UI              | Widget layouting and UI programming                         |
-| LOGIC           | Blueprint scriping                                          |
-| CODE            | C++ programming                                             |
+| DESIGN          | Numbers tweaking and changes to gameplay settings           |
+| CODE            | BP and C++ programming                                      |
 | PROJECT         | Changes to project settings or other configuration          |
+| CLEANUP         | Changes to folder structure, deleting unused files, etc.    |
+| MERGE           | See [Merge](#scm-merge)                                     |
 
 If multiple categories match the work you've done and you don't want to split up your checkin either choose the category that fits best or use multiple categories separated by commas.
 
-Team members using shared plastic credentials such as the freelancer account should add their initials in round brackets after the category. This way every changeset can be mapped to its creator.
+Should shared plastic credentials be used (such as a freelancer account), add your initials in round brackets after the category. This way every changeset can be mapped to its creator.
+
+<a name="5.3.1"></a>
+<a name="scm-checkins-examples"></a>
+#### 5.3.1 Examples
+
+Here are some examples of checkin comments and how they could be improved
+
+**Bad**
+* [PROJECT] Tweaked settings
+* [Code]\(FR) Fixed UserMenu
+* [MAPS] Added collision
+* [ART] Updated Buggy vehicle
+
+**Good**
+* [PROJECT] Increased Reflection Capture Resolution.  Enabled Lumen
+* [CODE]\(FR) Fixed runtime errors on dedicated server in UserMenu by adding ded server checks to cosmetic functions
+* [MAPS] Fixed missing collision at team2's base in DemoLevel
+* [ART] Reimported Buggy vehicle, fixing forward direction
 
 <a name="5.4"></a>
 <a name="scm-merge"></a>
