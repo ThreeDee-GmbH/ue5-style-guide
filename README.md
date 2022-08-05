@@ -1657,8 +1657,8 @@ Many Unreal Engine Assets require additional "derived data" before they can be u
 
 To set up Shared DDC:
 1. establish NAS connection
-2. have "Share" as network drive "T:\"
-3. add system environment variable: "UE-SharedDataCachePath" = "T:\_SharedResources\UE4DDC"
+2. have "Share" as network drive "T:\\"
+3. add system environment variable: "UE-SharedDataCachePath" = "T:\\_SharedResources\UE4DDC"
 
 **[⬆ Back to Top](#table-of-contents)**
 
