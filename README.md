@@ -429,11 +429,11 @@ Certain Blueprint classes which are part of the core game framework get their ow
 <a name="anc-materials"></a>
 <a name="1.2.5"></a>
 #### 1.2.5 Materials
-@TODO: PostProcess Material?
+
 | Asset Type                    | Prefix     | Suffix     | Notes                            |
 | ----------------------------- | ---------- | ---------- | -------------------------------- |
 | Material                      | M_         |            |                                  |
-| Material (Post Process)       | PP_        |            |                                  |
+| Material (Post Process)       | M_, MI_    | _PostProcess |                                |
 | Material Function             | MF_        |            |                                  |
 | Material Instance             | MI_        |            |                                  |
 | Material Parameter Collection | MPC_       |            |                                  |
@@ -556,11 +556,11 @@ Packing 4 channels of data into a texture (RGBA) is not recommended except for a
 <a name="anc-effects"></a>
 <a name="1.2.12"></a>
 #### 1.2.12 Effects
-@TODO: PostProcess Material
+
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Particle System         | PS_        |            |                                  |
-| Material (Post Process) | PP_        |            |                                  |
+| Material (Post Process) | M_, MI_    | _PostProcess |                                  |
 
 **[⬆ Back to Top](#table-of-contents)**
 
