@@ -1433,7 +1433,6 @@ It is normal during development for levels to occasionally not have lighting bui
 
 Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player.
 
-
 <a name="4.4"></a>
 <a name="assets-textures"></a>
 ### 4.4 Textures
@@ -1488,6 +1487,28 @@ Set the texture settings in Unreal:
 * Compression: UserInterface 2D
 * Texture Group: UI
 * Never Stream: true
+
+<a name="4.5"></a>
+<a name="assets-materials"></a>
+### 4.5 Materials & Shader
+
+Every newly created Material will be created as a Material Instance and derive its available parameters from a pre-existing Master Material.
+
+<a name="4.5.1"></a>
+<a name="assets-materials-master"></a>
+#### 4.5.1 Material Instances Should Be Based On The Correct Master Material
+
+Each Master Material that a Material Instance can be derived from will be named according to its specific use-case. Make sure
+
+<a name="4.5.2"></a>
+<a name="assets-materials-"></a>
+#### 4.5.2 Material Usage Should Conform To The Basic Art Direction Principles
+
+<a name="4.5.3"></a>
+<a name="assets-materials-"></a>
+#### 4.5.3 Materials Should Only Utilize Unique Texture Inputs If They Add Significant Visual Value To The Underlying Asset
+
+Utilize unique textures only if they are absolutely required. Always use pre-existing/tileable textures or a simple parameter if a sufficient visual quality can be achieved that way.
 
 
 **[⬆ Back to Top](#table-of-contents)**
