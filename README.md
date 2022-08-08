@@ -119,25 +119,54 @@ The contents of this style guide focus primarily on general project structure an
     - [3.4.5 Graphs Should Be Reasonably Commented](#bp-graphs-block-comments)
     - [3.4.6 Graphs Should Handle Casting Errors Where Appropriate](#bp-graphs-cast-error-handling)
     - [3.4.7 Graphs Should Not Have Any Dangling / Loose / Dead Nodes](#bp-graphs-dangling-nodes)
-- [4. Static Meshes](#4)
-  - [4.1 Static Mesh UVs](#s-uvs)
-    - [4.1.1 All Meshes Must Have UVs](#s-uvs-no-missing)
-    - [4.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps](#s-uvs-no-overlapping)
-  - [4.2 LODs Should Be Set Up Correctly](#s-lods)
-  - [4.3 Modular Socketless Assets Should Snap To The Grid Cleanly](#s-modular-snapping)
-  - [4.4 All Meshes Must Have Collision](#s-collision)
-  - [4.5 All Meshes Should Be Scaled Correctly](#s-scaled)
-- [5. Niagara](#Niagara)
-  - [5.1 No Spaces, Ever](#ng-rules)
-- [6. Levels / Maps](#levels)
-  - [6.1 No Errors Or Warnings](#levels-no-errors-or-warnings)
-  - [6.2 Lighting Should Be Built](#levels-lighting-should-be-built)
-  - [6.3 No Player Visible Z Fighting](#levels-no-visible-z-fighting)
-- [7. Textures](#textures)
-  - [7.1 Dimensions Are Powers of 2](#textures-dimensions)
-  - [7.2 Texture Density Should Be Uniform](#textures-density)
-  - [7.3 Textures Should Be No Bigger than 8192](#textures-max-size)
-  - [7.4 Textures Should Be Grouped Correctly](#textures-group)
+- [4. Asset Creation](#4)
+  - [4.1 Static Meshes](#assets-sm)
+    - [4.1.1 Static Mesh UVs](#assets-sm-uvs)
+      - [4.1.1.1 All Meshes Must Have UVs](#assets-sm-uvs-no-missing)
+      - [4.1.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps](#assets-sm-uvs-no-overlapping)
+      - [4.1.1.3 All Static Meshes Must Have Their Light Map Resolution Specified Deliberately](#assets-sm-uvs-lightmap-resolution-specified)
+      - [4.1.1.4 All Lightmap Island Boundaries Should be snapped to Pixel](#assets-sm-uvs-lightmap-boundaries-snapped)
+    - [4.1.2 LODs Should Be Set Up Correctly](#assets-sm-lods)
+    - [4.1.3 Modular Socketless Assets Should Snap To The Grid Cleanly](#assets-sm-modular-snapping)
+    - [4.1.4 All Meshes Must Have Collision](#assets-sm-collision)
+    - [4.1.5 All Meshes Should Be Scaled Correctly](#assets-sm-scaled)
+    - [4.1.6 All Non-Modular Assets Should have their pivot on the bottom center with the X-Axis forward of the Object](#assets-sm-pivot)
+    - [4.1.7 Use the correct import settings for static meshes](#assets-sm-import)
+  - [4.2 VFX](#assets-vfx)
+    - [4.2.1 No Spaces, Ever](#assets-vfx-rules)
+  - [4.3 Levels / Maps](#assets-levels)
+    - [4.3.1 No Errors Or Warnings](#assets-levels-no-errors-or-warnings)
+    - [4.3.2 Lighting Should Be Built](#assets-levels-lighting-should-be-built)
+    - [4.3.3 No Player Visible Z Fighting](#assets-levels-no-visible-z-fighting)
+  - [4.4 Textures](#assets-textures)
+    - [4.4.1 Dimensions Are Powers of 2](#assets-textures-dimensions)
+    - [4.4.2 Texel Density Should Be Uniform](#assets-textures-density)
+    - [4.4.3 Textures Should Be No Bigger than 8192](#assets-textures-max-size)
+    - [4.4.4 Textures Should Be Grouped Correctly](#assets-textures-group)
+    - [4.4.5 Textures Channels Should Be Merged and Used Correctly](#assets-textures-channels)
+    - [4.4.6 Textures Should Not Be Repeating On Itself](#assets-textures-non-repeating)
+    - [4.4.7 UI-Textures Should Be Setup Correctly](#assets-textures-ui)
+  - [4.5 Materials & Shader](#assets-materials)
+    - [4.5.1 Material Instances Should Be Based On The Correct Master Material](#assets-materials-master)
+    - [4.5.2 Material Usage Should Conform To The Basic Art Direction Principles](#assets-materials-art-direction)
+    - [4.5.3 Materials Should Only Utilize Unique Texture Inputs If They Add Significant Visual Value To The Underlying Asset](#assets-materials-textures)
+- [5. Source Control Management](#5)
+  - [5.1 Branches](#scm-branches)
+    - [5.1.1 Main Branch](#scm-branches-main)
+    - [5.1.2 Dev Branch](#scm-branches-dev)
+    - [5.1.3 Task Branches](#scm-branches-tasks)
+  - [5.2 Checkouts](#scm-checkouts)
+  - [5.3 Checkins](#scm-checkins)
+    - [5.3.1 Examples](#scm-checkins-examples)
+  - [5.4 Merge](#scm-merge)
+  - [5.5 Review Process](#scm-review)
+  - [5.6 Attributes](#scm-attributes)
+    - [5.6.1 Filtering](#scm-attributes-filtering)
+  - [5.7 JIRA](#scm-jira)
+    - [5.7.1 Setup](#scm-jira-setup)
+    - [5.7.2 Workflow](#scm-jira-workflow)
+- [6. Miscellaneous](#6)
+  - [6.1 Shared Derived Data Cache](#misc-ddc)
 
 ## Important Terminology
 
@@ -1501,11 +1530,11 @@ Every newly created Material will be created as a Material Instance and derive i
 Each Master Material that a Material Instance can be derived from will be named according to its specific use-case. Make sure
 
 <a name="4.5.2"></a>
-<a name="assets-materials-"></a>
+<a name="assets-materials-art-direction"></a>
 #### 4.5.2 Material Usage Should Conform To The Basic Art Direction Principles
 
 <a name="4.5.3"></a>
-<a name="assets-materials-"></a>
+<a name="assets-materials-textures"></a>
 #### 4.5.3 Materials Should Only Utilize Unique Texture Inputs If They Add Significant Visual Value To The Underlying Asset
 
 Utilize unique textures only if they are absolutely required. Always use pre-existing/tileable textures or a simple parameter if a sufficient visual quality can be achieved that way.
