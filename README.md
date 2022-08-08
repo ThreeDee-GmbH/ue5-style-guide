@@ -1,5 +1,6 @@
 
 
+
 # [ThreeDee](https://threedee.de) UE4 Style Guide()
 
 *Created on basis of the [Gamemakin UE4 Style Guide](https://github.com/Allar/ue5-style-guide)*
@@ -130,7 +131,7 @@ The contents of this style guide focus primarily on general project structure an
     - [4.1.3 Modular Socketless Assets Should Snap To The Grid Cleanly](#assets-sm-modular-snapping)
     - [4.1.4 All Meshes Must Have Collision](#assets-sm-collision)
     - [4.1.5 All Meshes Should Be Scaled Correctly](#assets-sm-scaled)
-    - [4.1.6 All Non-Modular Assets Should have their pivot on the bottom center with the X-Axis forward of the Object](#assets-sm-pivot)
+    - [4.1.6 Asset pivots and sockets should be placed according to the asset's final usecase](#assets-sm-pivot)
     - [4.1.7 Use the correct import settings for static meshes](#assets-sm-import)
   - [4.2 VFX](#assets-vfx)
     - [4.2.1 No Spaces, Ever](#assets-vfx-rules)
@@ -342,7 +343,7 @@ When naming an asset, use these tables to determine the prefix and suffix to use
 <a name="anc-common"></a>
 <a name="1.2.1"></a>
 #### 1.2.1 Most Common
-@TODO: Maps naming
+
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Level / Map             |            |            | [Should be in a folder called Maps.](#2.4) |
@@ -444,7 +445,7 @@ Certain Blueprint classes which are part of the core game framework get their ow
 <a name="anc-textures"></a>
 <a name="1.2.6"></a>
 #### 1.2.6 Textures
-@TODO: document ThreeDee established texture standards
+
 | Asset Type              | Prefix     | Suffix     | Notes                            |
 | ----------------------- | ---------- | ---------- | -------------------------------- |
 | Texture                 | T_         |            |                                  |
@@ -1398,7 +1399,14 @@ This is a subjective check on a per-project basis, however all assets should be 
 
 <a name="4.1.6"></a>
 <a name="assets-sm-pivot"></a>
-#### 4.1.6 All Non-Modular Assets Should have their pivot on the bottom center with the X-Axis forward of the Object
+#### 4.1.6 Asset pivots and sockets should be placed according to the asset's final usecase
+
+Always ask for the asset usecase beforehand and in consultation with the programmer or level artist so you can setup pivot and sockets correctly. 
+
+When exporting from 3D modeling software make sure your asset is rotated according to UE4's axis layout:
+* x -> Forward
+* y -> Right
+* z -> Up
 
 <a name="4.1.7"></a>
 <a name="assets-sm-import"></a>
@@ -1425,7 +1433,7 @@ As mentioned in [00.1 Forbidden Identifiers](#00), spaces and all white space ch
 <a name="4.3"></a>
 <a name="assets-levels"></a>
 ### 4.3 Levels / Maps
-@TODO: level artist specific rules
+
 [See Terminology Note](#terms-level-map) regarding "levels" vs "maps".
 
 This section will focus on Level assets and their internals.
