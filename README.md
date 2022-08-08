@@ -690,7 +690,7 @@ There are multiple reasons for this approach.
 
 Often in code style guides it is written that you should not pollute the global namespace and this follows the same principle. When assets are allowed to exist outside of a project folder, it often becomes much harder to enforce a strict structure layout as assets not in a folder encourages the bad behavior of not having to organize assets.
 
-Every asset should have a purpose, otherwise it does not belong in a project. If an asset is an experimental test and shouldn't be used by the project it should only ever exist on its respective task branch and be cleaned up before merging. @TODO: reference to source control guidelines
+Every asset should have a purpose, otherwise it does not belong in a project. If an asset is an experimental test and shouldn't be used by the project it should only ever exist on its respective [task branch](#scm-branches-tasks) and be cleaned up before [merging](#scm-merge).
 
 <a name="2.2.2"></a>
 #### 2.2.2 Reduce Migration Conflicts
@@ -734,9 +734,7 @@ If your project plans to release DLC or has multiple sub-projects associated wit
 <a name="structure-developers"></a>
 ### 2.3 Only Use Developers Folder For Strictly Local Files
 
-@TODO: Add reference to source control guidelines where and if appropriate
-
-When properly using source control and task branches there should be no need to put any project related files in the Developers folder. For this reason the Developers folder should be ignored for every project and never be submitted to source control.
+When properly using source control and [task branches](#scm-branches-tasks) there should be no need to put any project related files in the Developers folder. For this reason the Developers folder should be ignored for every project and never be submitted to source control.
 
 If a team member wishes to put assets under source control which are not yet ready to be integrated into the main project, they can do so safely on the respective task branch. If any such assets are needed repetitively across different branches, e.g. for Debugging/Testing purposes, it should be considered to properly add them to the main project in a secure way. In the meantime the assets in question can be shared between team members and branches by shelving them in source control.
 
