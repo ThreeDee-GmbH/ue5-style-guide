@@ -1433,13 +1433,11 @@ It is normal during development for levels to occasionally not have lighting bui
 
 Levels should not have any [z-fighting](https://en.wikipedia.org/wiki/Z-fighting) in all areas visible to the player.
 
-**[⬆ Back to Top](#table-of-contents)**
-
 
 <a name="4.4"></a>
 <a name="assets-textures"></a>
 ### 4.4 Textures
-@TODO: artist guidelines
+
 This section will focus on Texture assets and their internals.
 
 <a name="4.4.1"></a>
@@ -1452,11 +1450,11 @@ For example, `128x512`, `1024x1024`, `2048x1024`, `1024x2048`, `1x512`.
 
 <a name="4.4.2"></a>
 <a name="assets-textures-density"></a>
-#### 4.4.2 Texture Density Should Be Uniform
+#### 4.4.2 Texel Density Should Be Uniform
 
-All textures should be of a size appropriate for their standard use case. Appropriate texture density varies from project to project, but all textures within that project should have a consistent density.
+All textures should be of a size appropriate for their standard use case. Appropriate texel density varies from project to project, but all textures within that project should have a consistent density.
 
-For example, if a project's texture density is 8 pixel per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be 1024x1024, as that is the closest power of 2 that matches the project's texture density.
+For example, if a project's texel density is 8 pixel per 1 unit, a texture that is meant to be applied to a 100x100 unit cube should be 1024x1024, as that is the closest power of 2 that matches the project's texel density.
 
 <a name="4.4.3"></a>
 <a name="assets-textures-max-size"></a>
@@ -1470,9 +1468,29 @@ No texture should have a dimension that exceeds 8192 in size, unless you have a 
 
 Every texture has a Texture Group property used for LODing, and this should be set correctly based on its use. For example, all UI textures should belong in the UI texture group.
 
-**[⬆ Back to Top](#table-of-contents)**
+<a name="4.4.5"></a>
+<a name="assets-textures-channels"></a>
+#### 4.4.5 Textures Channels Should Be Merged and Used Correctly
 
-TODO: Restructure top-level chapters so we have an "Asset Creation" chapter. Source control can then be the chapter after that
+Set up the RGB and Alpha channels of your texture according to the Master Material the Texture is intended to be used with. 
+
+<a name="4.4.6"></a>
+<a name="assets-textures-non-repeating"></a>
+#### 4.4.6 Textures Should Not Be Repeating On Itself
+
+All parts of the texture should contain unique, non-repeating details that warrant the underlying texture resolution. Utilize the “tiling” parameters of a Material Instance, in case that a higher texel density is required.
+
+<a name="4.4.7"></a>
+<a name="assets-textures-ui"></a>
+#### 4.4.7 UI-Textures Should Be Setup Correctly
+
+Set the texture settings in Unreal:
+* Compression: UserInterface 2D
+* Texture Group: UI
+* Never Stream: true
+
+
+**[⬆ Back to Top](#table-of-contents)**
 
 
 <a name="5"></a>
