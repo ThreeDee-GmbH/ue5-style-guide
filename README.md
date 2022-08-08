@@ -1321,29 +1321,41 @@ If Linter is reporting bad UVs and you can't seem to track it down, open the res
 
 <a name="4.1.1.1"></a>
 <a name="assets-sm-uvs-no-missing"></a>
-##### 4.1.1.1 All Meshes Must Have UVs
+##### 4.1.1.1 All Meshes Must Have valid UVs with as few UV-Islands as possible
 
-Pretty simple. All meshes, regardless how they are to be used, should not be missing UVs.
+Pretty simple. All meshes, regardless how they are to be used, should not be missing UVs. Additionally, the UVs should not be folding into each other and no unnecessary UV splits should be present due to the increased vertex count.
 
 <a name="4.1.1.2"></a>
 <a name="assets-sm-uvs-no-overlapping"></a>
 ##### 4.1.1.2 All Meshes Must Not Have Overlapping UVs for Lightmaps
 
-Pretty simple. All meshes, regardless how they are to be used, should have valid non-overlapping UVs.
+Pretty simple. All static meshes, regardless how they are to be used, should have valid non-overlapping UVs on a secondary UV channel. Make sure that the proper UV channel is selected for them in the “Light Map Coordinate Index” setting.
+
+<a name="4.1.1.3"></a>
+<a name="assets-sm-uvs-lightmap-resolution-specified"></a>
+##### 4.1.1.3 All Static Meshes Must Have Their Light Map Resolution Specified Deliberately
+
+The “Light Map Resolution” setting should account for the scale of the object. Smaller objects (<10x10x10 cm), especially the ones that are expected to repeat often should have their resolution reduced below 64x64 pixels. Larger objects can have their lightmap resolution increased up to a maximum of 512x512.
+
+<a name="4.1.1.4"></a>
+<a name="assets-sm-uvs-lightmap-boundaries-snapped"></a>
+##### 4.1.1.4 All Lightmap Island Boundaries Should be snapped to Pixel
+
+To increase baking quality all borders of a Lightmap UV-Island should be snapped to a pixel-corner in the corresponding final Lightmap resolution.
 
 <a name="4.1.2"></a>
 <a name="assets-sm-lods"></a>
 #### 4.1.2 LODs Should Be Set Up Correctly
 
-This is a subjective check on a per-project basis, but as a general rule any mesh that can be seen at varying distances should have proper LODs.
+This is a subjective check on a per-project basis, but as a general rule any mesh that can be seen at varying distances should have proper LODs.Those LODs should be auto-generated via the available UnrealEngine tools whenever possible to remain time-efficient. LOD-distances should be adjusted in accordance with the specific scale/importance of the object.
 
 <a name="4.1.3"></a>
 <a name="assets-sm-modular-snapping"></a>
 #### 4.1.3 Modular Socketless Assets Should Snap To The Grid Cleanly
 
-This is a subjective check on a per-asset basis, however any modular socketless assets should snap together cleanly based on the project's grid settings.
+This is a subjective check on a per-asset basis, however any modular assets should snap together cleanly based on the project's grid settings.
 
-It is up to the project whether to snap based on a power of 2 grid or on a base 10 grid. However if you are authoring modular socketless assets for the marketplace, Epic's requirement is that they snap cleanly when the grid is set to 10 units or bigger.
+It is up to the project whether to snap based on a power of 2 grid or on a base 10 grid. However if you are authoring modular assets for the marketplace, Epic's requirement is that they snap cleanly when the grid is set to 10 units or bigger.
 
 <a name="4.1.4"></a>
 <a name="assets-sm-collision"></a>
@@ -1356,6 +1368,19 @@ Regardless of whether an asset is going to be used for collision in a level, all
 #### 4.1.5 All Meshes Should Be Scaled Correctly
 
 This is a subjective check on a per-project basis, however all assets should be scaled correctly to their project. Level designers or blueprint authors should not have to tweak the scale of meshes to get them to confirm in the editor. Scaling meshes in the engine should be treated as a scale override, not a scale correction.
+
+<a name="4.1.6"></a>
+<a name="assets-sm-pivot"></a>
+#### 4.1.6 All Non-Modular Assets Should have their pivot on the bottom center with the X-Axis forward of the Object
+
+<a name="4.1.7"></a>
+<a name="assets-sm-import"></a>
+#### 4.1.7 Use the correct import settings for static meshes
+
+* uncheck “Import Material”
+* uncheck “Import Textures”
+* uncheck “generate Lightmap UVs”
+
 
 **[⬆ Back to Top](#table-of-contents)**
 
