@@ -1696,13 +1696,13 @@ branch | Set branch status to 'Done' | cm | attribute set att:STATUS @object Don
 To hide done task branches in the branches view edit your query to:
 
 <code>
-find branch where not attrvalue='Done'
+find branch where not (attribute='Status' and attrvalue='Done')
 </code>
 
 In the branch explorer, open `Filters and conditional format`.  Add an exclusion rule with the condition
 
 <code>
-attrvalue = 'Done'
+attribute = 'Status' and attrvalue = 'Done'
 </code>
 
 <a name="5.7"></a>
