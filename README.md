@@ -1,6 +1,7 @@
 
 
 
+
 # [ThreeDee](https://threedee.de) UE4 Style Guide()
 
 *Created on basis of the [Gamemakin UE4 Style Guide](https://github.com/Allar/ue5-style-guide)*
@@ -1688,6 +1689,9 @@ To improve readability in branch view and branch explorer we mark task branches 
 branch | Set branch status to 'Open' | cm | attribute set att:STATUS @object Open -path="@wkpath"
 branch | Set branch status to 'Done' | cm | attribute set att:STATUS @object Done -path="@wkpath"
 </pre>
+
+To set the attribute manually, open a branch's extended information and open the `Attributes` tab. On the bottom, click `Apply Attribute` and select the status attribute and its desired value via dropdown menu in the new window.
+![Acceptable](https://github.com/ThreeDeeFlorett/ue5-style-guide/blob/main/images/scm-attributes.png?raw=true "Apply Attribute")
 
 <a name="5.6.1"></a>
 <a name="scm-attributes-filtering"></a>
