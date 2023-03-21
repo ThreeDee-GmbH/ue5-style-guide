@@ -114,7 +114,7 @@ The contents of this style guide focus primarily on general project structure an
     - [3.3.4 All Public Functions Should Have A Description](#bp-graphs-funcs-description)
     - [3.3.5 All Custom Static Plugin `BlueprintCallable` Functions Must Be Categorized By Plugin Name](#bp-graphs-funcs-plugin-category)
   - [3.4 Blueprint Graphs](#bp-graphs)
-    - [3.4.1 Electric Nodes](#bp-graphs-electric-nodes)
+    - [3.4.1 Electronic Nodes](#bp-graphs-electronic-nodes)
     - [3.4.2 No Spaghetti](#bp-graphs-spaghetti)
     - [3.4.3 Align Wires Not Nodes](#bp-graphs-align-wires)
     - [3.4.4 White Exec Lines Are Top Priority](#bp-graphs-exec-first-class)
@@ -1279,12 +1279,12 @@ For example, `Zed Camera Interface` or `Zed Camera Interface | Image Capturing`.
 This section covers things that apply to all Blueprint graphs.
   
 <a name="3.4.1"></a>
-<a name="bp-graphs-electric-nodes"></a>
-#### 3.4.1 Electric Nodes
+<a name="bp-graphs-electronic-nodes"></a>
+#### 3.4.1 Electronic Nodes
   
-It is heavily recommended to use the [Electric Nodes Plugin](https://www.unrealengine.com/marketplace/en-US/product/electronic-nodes). Once configured the plugin settings should be set as default so Unreal saves them to `DefaultEditorPerProjectUserSettings.ini`. This way the settings can be added to source control and will be consistent for everyone working on the project.
+It is heavily recommended to use the [Electronic Nodes Plugin](https://www.unrealengine.com/marketplace/en-US/product/electronic-nodes). Once configured the plugin settings should be set as default so Unreal saves them to `DefaultEditorPerProjectUserSettings.ini`. This way the settings can be added to source control and will be consistent for everyone working on the project.
   
-While Electric Nodes do a great job at making graphs cleaner and easier to read on their own they should never be treated as a replacement for the following rules.
+While Electronic Nodes do a great job at making graphs cleaner and easier to read on their own they should never be treated as a replacement for the following rules.
 
 <a name="3.4.2"></a>
 <a name="bp-graphs-spaghetti"></a>
