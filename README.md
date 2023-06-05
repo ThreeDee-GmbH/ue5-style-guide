@@ -1683,11 +1683,11 @@ Before being merged every task branch has to be reviewed with the following goal
 <a name="scm-attributes"></a>
 ### 5.6 Attributes
 
-To improve readability in branch view and branch explorer we mark task branches with the `STATUS` attribute to allow filtering out branches that are considered `Done`.  To set the attribute conveniently via a UI action, edit `C:\Users\<User name>\AppData\Local\plastic4\externaltools.conf` and add the following lines:
+To improve readability in branch view and branch explorer we mark task branches with the `Status` attribute to allow filtering out branches that are considered `Done`.  To set the attribute conveniently via a UI action, edit `C:\Users\<User name>\AppData\Local\plastic4\externaltools.conf` and add the following lines:
 
 <pre>
-branch | Set branch status to 'Open' | cm | attribute set att:STATUS @object Open -path="@wkpath"
-branch | Set branch status to 'Done' | cm | attribute set att:STATUS @object Done -path="@wkpath"
+branch | Set branch status to 'Open' | cm | attribute set att:Status @object Open -path="@wkpath"
+branch | Set branch status to 'Done' | cm | attribute set att:Status @object Done -path="@wkpath"
 </pre>
 
 To set the attribute manually, open a branch's extended information and open the `Attributes` tab. On the bottom, click `Apply Attribute` and select the status attribute and its desired value via dropdown menu in the new window.
